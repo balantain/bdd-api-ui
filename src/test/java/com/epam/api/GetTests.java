@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 
 import static com.epam.api.enums.PetStatus.AVAILABLE;
 import static com.epam.api.enums.PetStatus.SOLD;
+import static com.epam.api.filters.FilterManager.getAllureLoggingFilter;
 
 public class GetTests {
     RequestSpecification requestSpecification;
@@ -17,7 +18,7 @@ public class GetTests {
 
     @BeforeMethod
     public void configureRequest() {
-        requestSpecification = ConfigurationManager.getConfig();
+        requestSpecification = ConfigurationManager.getConfig(getAllureLoggingFilter());
         requestController = new RequestController(requestSpecification);
     }
 
