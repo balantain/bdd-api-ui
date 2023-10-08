@@ -9,7 +9,7 @@ public class TestConfig {
      * This class is used as entry point to store configuration
      */
     private static final String ENVIRONMENT = System.getProperty("env", "qa");
-    private static final String CONFIG_FOLDER = "configFiles";
+    private static final String CONFIG_FOLDER = "configuration";
     @Getter
     private static final Environment env;
 
