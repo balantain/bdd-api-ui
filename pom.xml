@@ -24,6 +24,7 @@
         <hamcrest.version>2.2</hamcrest.version>
         <allure-testng.version>2.24.0</allure-testng.version>
         <allure-rest-assured.version>2.21.0</allure-rest-assured.version>
+        <allure-cucumber.version>2.24.0</allure-cucumber.version>
         <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
         <aspectj.version>1.9.20.1</aspectj.version>
         <allure-maven.version>2.10.0</allure-maven.version>
@@ -123,6 +124,12 @@
             <artifactId>cucumber-java</artifactId>
             <version>${cucumber.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -135,6 +142,13 @@
             <artifactId>logback-classic</artifactId>
             <version>${logback-classic.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber7-jvm -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-cucumber7-jvm</artifactId>
+            <version>${allure-cucumber.version}</version>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>

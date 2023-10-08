@@ -35,6 +35,17 @@ public class RequestController {
         return requestSpecification.when().get(getPath(PET, FIND_BY_STATUS));
     }
 
+    public Response getPetByStatusWithEndpoint(String endpoint, String... statuses) {
+        if (statuses.length>0){
+            for (String status : statuses) {
+                if (status!=null && !status.isEmpty()){
+                    requestSpecification.param("status", status);
+                }
+            }
+        }
+        return requestSpecification.when().get(endpoint);
+    }
+
     public Response getPetByStatus() {
         return requestSpecification.when().get(getPath(PET, FIND_BY_STATUS));
     }
