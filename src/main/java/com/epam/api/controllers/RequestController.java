@@ -9,7 +9,7 @@ import static com.epam.utils.PathBuilder.FIND_BY_STATUS;
 import static com.epam.utils.PathBuilder.getPath;
 
 public class RequestController {
-    RequestSpecification requestSpecification;
+    private final RequestSpecification requestSpecification;
 
     public RequestController(RequestSpecification requestSpecification) {
         this.requestSpecification = requestSpecification;

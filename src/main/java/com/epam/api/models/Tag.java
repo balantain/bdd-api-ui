@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Tag {
-    private int id;
+    private long id;
     private String name;
 }

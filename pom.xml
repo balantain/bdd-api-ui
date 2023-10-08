@@ -23,9 +23,10 @@
         <assertj.version>3.24.2</assertj.version>
         <hamcrest.version>2.2</hamcrest.version>
         <allure-testng.version>2.24.0</allure-testng.version>
+        <allure-rest-assured.version>2.21.0</allure-rest-assured.version>
         <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
-        <aspectjweaver.version>1.9.20.1</aspectjweaver.version>
-        <allure-maven.version>2.12.0</allure-maven.version>
+        <aspectj.version>1.9.20.1</aspectj.version>
+        <allure-maven.version>2.10.0</allure-maven.version>
         <cucumber.version>7.14.0</cucumber.version>
         <slf4j.version>2.0.9</slf4j.version>
         <logback-classic.version>1.4.11</logback-classic.version>
@@ -110,6 +111,12 @@
             <artifactId>allure-testng</artifactId>
             <version>${allure-testng.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-rest-assured -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-rest-assured</artifactId>
+            <version>${allure-rest-assured.version}</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -147,7 +154,7 @@
                         </property>
                     </systemProperties>
                     <suiteXmlFiles>
-                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/testng-suites/${suiteXmlFile}</suiteXmlFile>
                     </suiteXmlFiles>
                     <testFailureIgnore>true</testFailureIgnore>
                     <failIfNoTests>true</failIfNoTests>
@@ -157,7 +164,7 @@
                     <dependency>
                         <groupId>org.aspectj</groupId>
                         <artifactId>aspectjweaver</artifactId>
-                        <version>${aspectjweaver.version}</version>
+                        <version>${aspectj.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -169,5 +176,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

@@ -1,6 +1,7 @@
 package com.epam.api.configuration;
 
 import com.epam.configuration.TestConfig;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.config.*;
 import io.restassured.filter.Filter;
@@ -25,6 +26,9 @@ public class ConfigurationManager {
                         "CONNECTION_MANAGER_TIMEOUT",
                         3000));
         var specification = RestAssured.given()
+                .filter(new AllureRestAssured()
+                        .setRequestAttachmentName("Request")
+                        .setResponseAttachmentName("Response"))
                 .config(config)
                 .baseUri(TestConfig.getEnv().getApiBaseUri())
                 .contentType(ContentType.JSON);

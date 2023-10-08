@@ -7,17 +7,7 @@
             <pattern>%d{dd.MM.yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{20} - %msg%n</pattern>
         </encoder>
     </appender>
-    <!-- Allure appender settings -->
-    <appender name="ALLURE" class="io.qameta.allure.logback.AllureAppender">
-        <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{20} - %msg%n</pattern>
-        </encoder>
-    </appender>
-
-    <root level="debug">
+    <root level="info">
         <appender-ref ref="STDOUT" />
-    </root>
-    <root level="debug">
-        <appender-ref ref="ALLURE"/>
     </root>
 </configuration>
