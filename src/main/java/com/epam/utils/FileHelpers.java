@@ -10,7 +10,10 @@ public class FileHelpers {
     private FileHelpers() {
     }
 
+//    public static File getFileFromResource(String fileName) {
+//        return new File(Objects.requireNonNull(FileHelpers.class.getClassLoader().getResource(fileName)).getFile());
+//    }
     public static File getFileFromResource(String fileName) {
-        return new File(Objects.requireNonNull(FileHelpers.class.getClassLoader().getResource(fileName)).getFile());
+        return new File(Objects.requireNonNull("src/test/resources/%s".formatted(fileName)));
     }
 }

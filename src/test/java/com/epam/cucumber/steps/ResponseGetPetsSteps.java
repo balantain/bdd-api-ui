@@ -1,4 +1,4 @@
-package com.epam.stepdefinitions;
+package com.epam.cucumber.steps;
 
 import com.epam.api.models.Pet;
 import io.cucumber.java.en.And;

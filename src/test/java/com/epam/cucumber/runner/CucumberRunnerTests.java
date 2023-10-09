@@ -1,13 +1,13 @@
-package com.epam.runners;
+package com.epam.cucumber.runner;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
         features = "src/test/resources/features",
-        glue = "com.epam.stepdefinitions",
+        glue = "com.epam.cucumber.steps",
         plugin = {"pretty", "html:target/cucumber-reports", "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"},
         tags = "@GetPetsTests"
 )
-public class CucumberTestRunner extends AbstractTestNGCucumberTests {
+public class CucumberRunnerTests extends AbstractTestNGCucumberTests {
 }

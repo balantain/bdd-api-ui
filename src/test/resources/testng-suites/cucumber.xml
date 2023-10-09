@@ -3,7 +3,7 @@
 <suite name="API tests for Pets">
     <test name="GET Pet Tests">
         <classes>
-            <class name="com.epam.runners.CucumberTestRunner"/>
+            <class name="com.epam.cucumber.runner.CucumberRunnerTests"/>
         </classes>
     </test>
 </suite>

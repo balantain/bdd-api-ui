@@ -1,4 +1,4 @@
-package com.epam.stepdefinitions;
+package com.epam.cucumber.steps;
 
 import com.epam.api.configuration.ConfigurationManager;
 import com.epam.api.controllers.RequestController;
