@@ -2,6 +2,7 @@ package com.epam.cucumber.steps;
 
 import com.epam.api.configuration.ConfigurationManager;
 import com.epam.api.controllers.RequestController;
+import com.epam.api.filters.FilterManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
@@ -17,7 +18,7 @@ public class RequestGetPetSteps {
 
     @Given("Base request specification")
     public void getBaseApiConfiguration() {
-        RequestSpecification requestSpecification = ConfigurationManager.getConfig();
+        RequestSpecification requestSpecification = ConfigurationManager.getConfig(FilterManager.getAllureLoggingFilter());
         requestController = new RequestController(requestSpecification);
     }
 
