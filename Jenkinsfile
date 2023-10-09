@@ -7,5 +7,10 @@ pipeline {
                 sh "mvn -DsuiteXmlFile=cucumber.xml -Dcucumber.filter.tags=@GetPetsTests test"
             }
         }
+        post {
+            always {
+                allure includeProperties: false, jdk: '', results: [[path: 'build/target/allure-results']]
+            }
+        }
     }
 }
