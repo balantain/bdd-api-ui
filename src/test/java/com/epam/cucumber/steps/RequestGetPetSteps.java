@@ -18,7 +18,7 @@ public class RequestGetPetSteps {
     private String[] statuses;
     public static Response response;
 
-    @Given("Base request specification")
+    @Given("Use base request specification")
     public void getBaseApiConfiguration() {
         RequestSpecification requestSpecification = RestConfig.getConfig(FilterManager.getAllureLoggingFilter());
         requestController = new RequestManager(requestSpecification);
@@ -31,9 +31,15 @@ public class RequestGetPetSteps {
         log.info("Statuses " + statuses + " are added to params");
     }
 
-    @When("User triggers GET request with {string} endpoint")
+    @When("Trigger GET request with {string} endpoint")
     public void getPetsByPreparedStatus(String endpoint) {
         response = requestController.getPetByStatusWithEndpoint(endpoint, statuses);
         log.info("Endpoint " + endpoint + " is triggered with statuses: " + Arrays.toString(statuses));
+    }
+
+    @When("Trigger GET request with {string} endpoint with saved id")
+    public void getPetByIdWithEndpoint(String endpoint) {
+        response = requestController.getPetByIdWithEndpoint(endpoint, ResponseGetPetsSteps.id);
+        log.info("Endpoint " + endpoint + " is triggered with id");
     }
 }

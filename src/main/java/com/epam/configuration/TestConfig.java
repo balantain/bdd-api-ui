@@ -9,7 +9,6 @@ public class TestConfig {
      * This class is used as entry point to store configuration
      */
     private static final String ENVIRONMENT = System.getProperty("env", "qa");
-    private static final String CONFIG_FOLDER = "environment";
     @Getter
     private static final Environment env;
 
@@ -18,7 +17,6 @@ public class TestConfig {
 
     static {
         env = PropertyConfigurationReader
-                .readPropertyConfig(FileHelpers.getFileFromResource("%s/%s.properties"
-                        .formatted(CONFIG_FOLDER, ENVIRONMENT)), Environment.class);
+                .readPropertyConfig(FileHelpers.getPropertyFromResourse(ENVIRONMENT), Environment.class);
     }
 }

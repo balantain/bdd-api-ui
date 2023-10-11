@@ -43,11 +43,14 @@ public class RequestManager {
                 }
             }
         }
-        return requestSpecification.when().get(endpoint
-        );
+        return requestSpecification.when().get(endpoint);
     }
 
     public Response getPetByStatus() {
         return requestSpecification.when().get(getPath(PET, FIND_BY_STATUS));
+    }
+
+    public Response getPetByIdWithEndpoint(String endpoint, long id) {
+        return requestSpecification.when().get("%s/%s".formatted(endpoint, id));
     }
 }
