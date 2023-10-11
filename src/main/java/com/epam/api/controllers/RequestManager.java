@@ -8,10 +8,10 @@ import static com.epam.api.enums.InfoType.PET;
 import static com.epam.utils.PathBuilder.FIND_BY_STATUS;
 import static com.epam.utils.PathBuilder.getPath;
 
-public class RequestController {
+public class RequestManager {
     private final RequestSpecification requestSpecification;
 
-    public RequestController(RequestSpecification requestSpecification) {
+    public RequestManager(RequestSpecification requestSpecification) {
         this.requestSpecification = requestSpecification;
     }
 
@@ -43,7 +43,8 @@ public class RequestController {
                 }
             }
         }
-        return requestSpecification.when().get(endpoint);
+        return requestSpecification.when().get(endpoint
+        );
     }
 
     public Response getPetByStatus() {

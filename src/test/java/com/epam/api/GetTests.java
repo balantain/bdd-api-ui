@@ -1,7 +1,7 @@
 package com.epam.api;
 
-import com.epam.api.configuration.ConfigurationManager;
-import com.epam.api.controllers.RequestController;
+import com.epam.api.configuration.RestConfig;
+import com.epam.api.controllers.RequestManager;
 import com.epam.api.models.Pet;
 import io.restassured.specification.RequestSpecification;
 import org.assertj.core.api.Assertions;
@@ -14,12 +14,12 @@ import static com.epam.api.filters.FilterManager.getAllureLoggingFilter;
 
 public class GetTests {
     RequestSpecification requestSpecification;
-    RequestController requestController;
+    RequestManager requestController;
 
     @BeforeMethod
     public void configureRequest() {
-        requestSpecification = ConfigurationManager.getConfig(getAllureLoggingFilter());
-        requestController = new RequestController(requestSpecification);
+        requestSpecification = RestConfig.getConfig(getAllureLoggingFilter());
+        requestController = new RequestManager(requestSpecification);
     }
 
     @Test
@@ -32,7 +32,7 @@ public class GetTests {
 
     @Test
     public void getEmptyStatus() {
-        RequestController requestController = new RequestController(requestSpecification);
+        RequestManager requestController = new RequestManager(requestSpecification);
         Pet[] pets = requestController.getPetByStatus()
                 .then().statusCode(200)
                 .log().all().extract().as(Pet[].class);
@@ -41,7 +41,7 @@ public class GetTests {
 
     @Test
     public void getPetByInvalidStatus() {
-        RequestController requestController = new RequestController(requestSpecification);
+        RequestManager requestController = new RequestManager(requestSpecification);
         Pet[] pets = requestController.getPetByStatus("dead")
                 .then().statusCode(200)
                 .log().all().extract().as(Pet[].class);

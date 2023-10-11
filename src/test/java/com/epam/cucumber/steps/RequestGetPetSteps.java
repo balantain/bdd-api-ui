@@ -1,7 +1,7 @@
 package com.epam.cucumber.steps;
 
-import com.epam.api.configuration.ConfigurationManager;
-import com.epam.api.controllers.RequestController;
+import com.epam.api.configuration.RestConfig;
+import com.epam.api.controllers.RequestManager;
 import com.epam.api.filters.FilterManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -14,18 +14,18 @@ import java.util.Arrays;
 import java.util.List;
 @Slf4j
 public class RequestGetPetSteps {
-    private RequestController requestController;
+    private RequestManager requestController;
     private String[] statuses;
     public static Response response;
 
     @Given("Base request specification")
     public void getBaseApiConfiguration() {
-        RequestSpecification requestSpecification = ConfigurationManager.getConfig(FilterManager.getAllureLoggingFilter());
-        requestController = new RequestController(requestSpecification);
+        RequestSpecification requestSpecification = RestConfig.getConfig(FilterManager.getAllureLoggingFilter());
+        requestController = new RequestManager(requestSpecification);
         log.info("Base request specification is created with AllureLoggingFilter");
     }
 
-    @And("Pet statuses are:")
+    @And("Pet's desired statuses are:")
     public void setPetStatuses(List<String> statuses) {
         this.statuses = statuses.toArray(new String[0]);
         log.info("Statuses " + statuses + " are added to params");

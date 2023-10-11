@@ -3,7 +3,7 @@ Feature: Get Pets information
 
   Scenario: Get Pets information by valid status
     Given Base request specification
-    And   Pet statuses are:
+    And   Pet's desired statuses are:
     |available|
     |sold     |
     When User triggers GET request with "/pet/findByStatus" endpoint

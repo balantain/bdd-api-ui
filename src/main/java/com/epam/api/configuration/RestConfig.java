@@ -10,7 +10,7 @@ import io.restassured.specification.RequestSpecification;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
-public class ConfigurationManager {
+public class RestConfig {
     /**
      * This class is used for base RestAssured configuration
      */
