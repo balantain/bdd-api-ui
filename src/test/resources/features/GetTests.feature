@@ -17,6 +17,6 @@ Feature: Get Pets information
       |available|
     When Trigger GET request with "/pet/findByStatus" endpoint
     And  Save 10 pet's id number in the list
-    When Use base request specification
+    And  Use base request specification
     And  Trigger GET request with "/pet" endpoint with saved id
     Then Pet object in response matches "petJsonSchema" schema
