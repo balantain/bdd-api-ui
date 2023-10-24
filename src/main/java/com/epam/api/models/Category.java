@@ -1,13 +1,13 @@
 package com.epam.api.models;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Category {
-    private int id;
+    private long id;
     private String name;
 }

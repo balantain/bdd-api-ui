@@ -1,7 +1,7 @@
 package com.epam.cucumber.steps;
 
 import com.epam.api.configuration.RestConfig;
-import com.epam.api.controllers.RequestManager;
+import com.epam.api.managers.RequestManager;
 import com.epam.api.filters.FilterManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -28,18 +28,18 @@ public class RequestGetPetSteps {
     @And("Pet's desired statuses are:")
     public void setPetStatuses(List<String> statuses) {
         this.statuses = statuses.toArray(new String[0]);
-        log.info("Statuses " + statuses + " are added to params");
+        log.info("Statuses %s are added to params".formatted(statuses));
     }
 
     @When("Trigger GET request with {string} endpoint")
     public void getPetsByPreparedStatus(String endpoint) {
         response = requestController.getPetByStatusWithEndpoint(endpoint, statuses);
-        log.info("Endpoint " + endpoint + " is triggered with statuses: " + Arrays.toString(statuses));
+        log.info("Endpoint %s is triggered with statuses: %s".formatted(endpoint, Arrays.toString(statuses)));
     }
 
     @When("Trigger GET request with {string} endpoint with saved id")
     public void getPetByIdWithEndpoint(String endpoint) {
         response = requestController.getPetByIdWithEndpoint(endpoint, ResponseGetPetsSteps.id);
-        log.info("Endpoint " + endpoint + " is triggered with id");
+        log.info("Endpoint %s is triggered with id %s".formatted(endpoint, ResponseGetPetsSteps.id));
     }
 }

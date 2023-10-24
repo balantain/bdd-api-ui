@@ -10,6 +10,7 @@
     "title": "Items",
     "type": "object",
     "required": [
+      "id",
       "name",
       "photoUrls"
     ],

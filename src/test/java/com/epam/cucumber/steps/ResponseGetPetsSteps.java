@@ -13,6 +13,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 @Slf4j
 public class ResponseGetPetsSteps {
     public static long id;
+    public static Pet pet;
 
     @Then("Response status code is {int}")
     public void validateResponseStatusCode(int statusCode) {
@@ -35,7 +36,13 @@ public class ResponseGetPetsSteps {
     @And("Save {int} pet's id number in the list")
     public void savePetIdByNumber(int number) {
         id = response.then().extract().as(Pet[].class)[number-1].getId();
-        log.info("Id of " + number + "pet is " + id);
+        log.info("Id of %s pet is %s".formatted(number, id));
+    }
+
+    @Then("Save {int} Pet from response into constant")
+    public void savePateintoConstant(int number) {
+        pet = response.then().extract().as(Pet[].class)[number-1];
+        log.info("Save %s pet from response into constant: %s".formatted(number, pet));
     }
 
     @Then("Pet object in response matches {string} schema")
@@ -44,4 +51,9 @@ public class ResponseGetPetsSteps {
                 .body(matchesJsonSchema(getJsonSchemaFromResource(schema)));
     }
 
+    @Then("Pet is saved into constant")
+    public void savePateFromResponseIntoConstant() {
+        pet = response.then().extract().as(Pet.class);
+        log.info("Save %s from response into constant".formatted(pet));
+    }
 }
