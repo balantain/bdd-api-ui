@@ -24,3 +24,15 @@ Feature: Adding PetObject into database
       | 111    | 1           | cat           | Max  | link1        | 1       | cute        | available |
       | 222    |             | cat           | Alex | link1, link2 | 1,2     | cute, angry |           |
       | 333    |             |               | Ann  |              |         |             |           |
+      |        |             |               |      |              |         |             |           |
+    And Print pets with the following parameters:
+    |name|status|
+    |BOW |sold  |
+
+  @CheckAddingInDB
+  Scenario: Check Pet creation
+    Given Add pets with the following parameters into Database:
+      | pet_id | category_id | category_name | name | photourls    | tags_id | tags_name   | status    |
+      | 111    | 1           | cat           | Max  | link1        | 1       | cute        | available |
+      | 222    |             | cat           | Alex | link1, link2 | 1,2     | cute, angry |           |
+      | 333    |             |               | Ann  |              |         |             |           |

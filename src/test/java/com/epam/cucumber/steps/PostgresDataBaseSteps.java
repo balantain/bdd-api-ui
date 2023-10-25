@@ -43,4 +43,9 @@ public class PostgresDataBaseSteps {
     public void createPetsWithParameters(List<Map<String, String>> pets) {
         ModelBuilder.buildPetWithData(pets).forEach(System.out::println);
     }
+
+    @When("Add pets with the following parameters into Database:")
+    public void insertPetsIntoDatabase(List<Map<String, String>> pets) {
+        pets.forEach(petDao::insertPetIntoDatabase);
+    }
 }

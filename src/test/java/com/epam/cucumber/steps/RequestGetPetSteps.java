@@ -15,7 +15,7 @@ import java.util.List;
 @Slf4j
 public class RequestGetPetSteps {
     private RequestManager requestController;
-    private String[] statuses;
+    private String[] statuses = new String[0];
     public static Response response;
 
     @Given("Use base request specification")
