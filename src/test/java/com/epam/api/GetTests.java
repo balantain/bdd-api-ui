@@ -1,7 +1,7 @@
 package com.epam.api;
 
 import com.epam.api.configuration.RestConfig;
-import com.epam.api.controllers.RequestManager;
+import com.epam.api.managers.RequestManager;
 import com.epam.api.models.Pet;
 import io.restassured.specification.RequestSpecification;
 import org.assertj.core.api.Assertions;

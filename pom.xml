@@ -31,6 +31,7 @@
         <cucumber.version>7.14.0</cucumber.version>
         <slf4j.version>2.0.9</slf4j.version>
         <logback-classic.version>1.4.11</logback-classic.version>
+        <postgresql.version>42.6.0</postgresql.version>
     </properties>
 
     <dependencies>
@@ -148,7 +149,12 @@
             <artifactId>allure-cucumber7-jvm</artifactId>
             <version>${allure-cucumber.version}</version>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

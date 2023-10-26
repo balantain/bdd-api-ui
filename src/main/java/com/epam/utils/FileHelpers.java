@@ -27,7 +27,7 @@ public class FileHelpers {
         return new File(Objects.requireNonNull(FileHelpers.class.getClassLoader().getResource(fileName)).getFile());
     }
 
-
+//    uncomment, if want to run tests locally
 //    public static File getFileFromResource(String fileName) {
 //        return new File(Objects.requireNonNull("src/test/resources/%s".formatted(fileName)));
 //    }

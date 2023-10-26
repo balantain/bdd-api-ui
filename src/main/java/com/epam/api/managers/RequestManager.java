@@ -1,4 +1,4 @@
-package com.epam.api.controllers;
+package com.epam.api.managers;
 
 import com.epam.api.enums.PetStatus;
 import io.restassured.response.Response;
