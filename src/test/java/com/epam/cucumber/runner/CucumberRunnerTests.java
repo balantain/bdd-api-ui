@@ -5,7 +5,7 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
         features = "src/test/resources/features",
-        glue = "com.epam.cucumber.steps",
+        glue = "com.epam.cucumber.stepdefinitions",
         plugin = {"pretty", "html:target/cucumber-reports", "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"},
         tags = "@GetPetsTests"
 )
