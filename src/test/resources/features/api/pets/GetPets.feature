@@ -31,9 +31,9 @@ Feature: Get methods tests for Pets endpoint
     And  Number of pets in response is greater then 0
 
   @WithPendingStatus
-  Scenario: Get pets by available status
+  Scenario: Get pets by pending status
     Given Use base request specification
-    And   Pet's desired statuses are:
+    And  Pet's desired statuses are:
       | pending |
     When Trigger GET request with "/pet/findByStatus" endpoint
     Then Response status code is 200
@@ -41,9 +41,9 @@ Feature: Get methods tests for Pets endpoint
     And  Number of pets in response is greater then 0
 
   @WithSoldStatus
-  Scenario: Get pets by available status
+  Scenario: Get pets by sold status
     Given Use base request specification
-    And   Pet's desired statuses are:
+    And  Pet's desired statuses are:
       | sold      |
     When Trigger GET request with "/pet/findByStatus" endpoint
     Then Response status code is 200
@@ -51,9 +51,9 @@ Feature: Get methods tests for Pets endpoint
     And  Number of pets in response is greater then 0
 
   @WithVariousStatuses
-  Scenario Outline: Get pets by available status
+  Scenario Outline: Get pets by status
     Given Use base request specification
-    And   Pet's desired statuses are:
+    And  Pet's desired statuses are:
       | <statuses> |
     When Trigger GET request with "/pet/findByStatus" endpoint
     Then Response status code is 200
@@ -66,9 +66,9 @@ Feature: Get methods tests for Pets endpoint
       | sold      |
 
   @WithAllStatuses
-  Scenario: Get pets by available status
+  Scenario: Get pets by all statuses
     Given Use base request specification
-    And   Pet's desired statuses are:
+    And  Pet's desired statuses are:
       | available |
       | pending   |
       | sold      |
@@ -80,7 +80,7 @@ Feature: Get methods tests for Pets endpoint
   @SinglePet
   Scenario: Single Pet object matches schema
     Given Use base request specification
-    And   Pet's desired statuses are:
+    And  Pet's desired statuses are:
       | available |
     When Trigger GET request with "/pet/findByStatus" endpoint
     Then Response status code is 200
@@ -102,7 +102,7 @@ Feature: Get methods tests for Pets endpoint
   Scenario: Get pets by available status
     Given Use base request specification
     And   Pet's desired statuses are:
-      | invalid |
+      | died |
     When Trigger GET request with "/pet/findByStatus" endpoint
     Then Response status code is 200
     And  Response headers amount is 8
@@ -111,7 +111,10 @@ Feature: Get methods tests for Pets endpoint
   @WithInvalidId
   Scenario: Get pets by invalid id
     Given Use base request specification
-    And   Trigger GET request with "/pet" endpoint with id 123123123
-    Then  Response status code is 404
-    And   Response body matches "errorJsonSchema" schema
-    And   Error has code 1, type "error" and message "Pet not found"
+    And  Trigger GET request with "/pet" endpoint with id 123123123
+    Then Response status code is 404
+    And  Response body matches "errorJsonSchema" schema
+    And  Error has code 1, type "error" and message:
+    """
+    Pet not found
+    """

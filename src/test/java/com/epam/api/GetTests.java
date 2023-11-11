@@ -14,17 +14,17 @@ import static com.epam.api.filters.FilterManager.getAllureLoggingFilter;
 
 public class GetTests {
     RequestSpecification requestSpecification;
-    RequestManager requestController;
+    RequestManager requestManager;
 
     @BeforeMethod
     public void configureRequest() {
         requestSpecification = RestConfig.getConfig(getAllureLoggingFilter());
-        requestController = new RequestManager(requestSpecification);
+        requestManager = new RequestManager(requestSpecification);
     }
 
     @Test
     public void getPetByStatusTest() {
-        Pet[] pets = requestController.getPetByStatus(AVAILABLE, SOLD)
+        Pet[] pets = requestManager.getPetByStatus(AVAILABLE, SOLD)
                 .then().statusCode(200)
                 .log().all().extract().as(Pet[].class);
         Assertions.assertThat(pets.length).isGreaterThan(0);
@@ -32,8 +32,8 @@ public class GetTests {
 
     @Test
     public void getEmptyStatus() {
-        RequestManager requestController = new RequestManager(requestSpecification);
-        Pet[] pets = requestController.getPetByStatus()
+        RequestManager requestManager = new RequestManager(requestSpecification);
+        Pet[] pets = requestManager.getPetByStatus()
                 .then().statusCode(200)
                 .log().all().extract().as(Pet[].class);
         Assertions.assertThat(pets).isEmpty();
@@ -41,8 +41,8 @@ public class GetTests {
 
     @Test
     public void getPetByInvalidStatus() {
-        RequestManager requestController = new RequestManager(requestSpecification);
-        Pet[] pets = requestController.getPetByStatus("dead")
+        RequestManager requestManager = new RequestManager(requestSpecification);
+        Pet[] pets = requestManager.getPetByStatus("dead")
                 .then().statusCode(200)
                 .log().all().extract().as(Pet[].class);
         Assertions.assertThat(pets).isEmpty();

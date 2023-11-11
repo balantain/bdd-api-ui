@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -22,9 +23,10 @@ import static org.hamcrest.Matchers.equalTo;
 @Slf4j
 public class PetApiSteps {
     public static Response response;
-    private String[] statuses = new String[0];
     public static long idFromResponse;
+    private String[] statuses = new String[0];
     private Pet petFromResponse;
+    private List<Pet> petsFromResponse = new ArrayList<>();
 
     @When("Pet's desired statuses are:")
     public void setPetStatuses(List<String> statuses) {
@@ -138,7 +140,7 @@ public class PetApiSteps {
         soft.assertAll();
     }
 
-    @Then("Error has code {int}, type {string} and message {string}")
+    @Then("Error has code {int}, type {string} and message:")
     public void validateErrorObject(int code, String type, String message) {
         SoftAssertions soft = new SoftAssertions();
         ResponseError error = response.then().extract().body().as(ResponseError.class);

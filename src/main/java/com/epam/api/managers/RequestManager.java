@@ -67,4 +67,12 @@ public class RequestManager {
         return requestSpecification.body(pet).when().post(endpoint);
     }
 
+    public Response deletePet(String endpoint, long id) {
+        return requestSpecification.when().delete("%s/%s".formatted(endpoint, id));
+    }
+
+    public Response deletePet(long id) {
+        return requestSpecification.when().delete("%s/%s".formatted(PET, id));
+    }
+
 }
