@@ -2,3 +2,4 @@
 /target/
 /allure-results/
 /.allure/
+.DS_Store

@@ -2,6 +2,7 @@ package com.epam.cucumber.stepdefinitions.api;
 
 import com.epam.api.configuration.RestConfig;
 import com.epam.api.managers.RequestManager;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.restassured.specification.RequestSpecification;
@@ -30,18 +31,18 @@ public class BaseApiSteps {
         log.info("Base request specification is created with AllureLoggingFilter");
     }
 
-    @When("Request specification is ready for request")
+    @And("Request specification is ready for request")
     public void getRequestManager() {
         requestManager = new RequestManager(requestSpecification);
     }
 
-    @When("Add headers to request:")
+    @And("Add headers to request:")
     public void addHeaders(List<Map<String, String>> headers) {
         headers.forEach(header -> requestSpecification.header(header.get("header"), header.get("value")));
         log.info("Headers were added to request specification");
     }
 
-    @When("Created pet is added to request body")
+    @And("Created pet is added to request body")
     public void addSinglePetToRequestBody() {
         requestSpecification.body(petModel);
         log.info("Created Pet is added to body: " + petModel);
