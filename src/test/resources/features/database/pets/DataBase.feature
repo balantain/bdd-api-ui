@@ -14,8 +14,9 @@ Feature: Adding PetObject into database
     Given Insert pets into database with values:
       | pet_id | category_id | category_name | name | photourls                                                                                | tags_id | tags_name | status    |
       | 333    | 1           | cat           | Max  | https://t4.ftcdn.net/jpg/00/97/58/97/240_F_97589769_t45CqXyzjz0KXwoBZT9PRaWGHRk5hQqQ.jpg | 1       | cute      | available |
-    When Select pet form database by name "Max"
-    Then Validate pet from database has pet_id 333
+    When Select pet form database by pet_id 333
+    Then Validate pet from database has name "Max"
+    Then Delete pet from database by name "Max"
 
   @CheckPetCreation
   Scenario: Check Pet creation
@@ -36,3 +37,7 @@ Feature: Adding PetObject into database
       | 111    | 1           | cat           | Max  | link1        | 1       | cute        | available |
       | 222    |             | cat           | Alex | link1, link2 | 1,2     | cute, angry |           |
       | 333    |             |               | Ann  |              |         |             |           |
+
+#  @GetPetFromDB
+#  Scenario: Get pet frpm DB by pet_id
+#    Given Get pets from DB by pet_id ""

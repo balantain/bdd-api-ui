@@ -1,6 +1,7 @@
 package com.epam.api.managers;
 
 import com.epam.api.enums.PetStatus;
+import com.epam.api.models.Pet;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
@@ -53,4 +54,25 @@ public class RequestManager {
     public Response getPetByIdWithEndpoint(String endpoint, long id) {
         return requestSpecification.when().get("%s/%s".formatted(endpoint, id));
     }
+
+    public void addPetToRequestBody(Pet pet) {
+        requestSpecification.body(pet);
+    }
+
+    public Response postNewPet(String endpoint) {
+        return requestSpecification.when().post(endpoint);
+    }
+
+    public Response postNewPet(String endpoint, Pet pet) {
+        return requestSpecification.body(pet).when().post(endpoint);
+    }
+
+    public Response deletePet(String endpoint, long id) {
+        return requestSpecification.when().delete("%s/%s".formatted(endpoint, id));
+    }
+
+    public Response deletePet(long id) {
+        return requestSpecification.when().delete("%s/%s".formatted(PET, id));
+    }
+
 }

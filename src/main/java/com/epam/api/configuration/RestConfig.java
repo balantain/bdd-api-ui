@@ -1,5 +1,6 @@
 package com.epam.api.configuration;
 
+import com.epam.api.filters.FilterManager;
 import com.epam.configuration.TestConfig;
 import io.restassured.RestAssured;
 import io.restassured.config.*;
@@ -27,7 +28,8 @@ public class RestConfig {
         var specification = RestAssured.given()
                 .config(config)
                 .baseUri(TestConfig.getEnv().getApiBaseUri())
-                .contentType(ContentType.JSON);
+                .contentType(ContentType.JSON)
+                .filter(FilterManager.getAllureLoggingFilter());
 
         for (Filter filter : filters) {
             specification.filter(filter);

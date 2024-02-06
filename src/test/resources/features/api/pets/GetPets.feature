@@ -1,5 +1,5 @@
 @GetPets
-Feature: Get Pets information
+Feature: Get methods tests for Pets endpoint
 
   @GetPetsHeaders
   Scenario: Validate response headers
@@ -27,51 +27,69 @@ Feature: Get Pets information
       | available |
     When Trigger GET request with "/pet/findByStatus" endpoint
     Then Response status code is 200
+    And  Response body matches "petsArrayJsonSchema" schema
     And  Number of pets in response is greater then 0
-    And  Each pet object in response matches "petsArrayJsonSchema" schema
 
   @WithPendingStatus
-  Scenario: Get pets by available status
+  Scenario: Get pets by pending status
     Given Use base request specification
-    And   Pet's desired statuses are:
+    And  Pet's desired statuses are:
       | pending |
     When Trigger GET request with "/pet/findByStatus" endpoint
     Then Response status code is 200
+    And  Response body matches "petsArrayJsonSchema" schema
     And  Number of pets in response is greater then 0
-    And  Each pet object in response matches "petsArrayJsonSchema" schema
 
   @WithSoldStatus
-  Scenario: Get pets by available status
+  Scenario: Get pets by sold status
     Given Use base request specification
-    And   Pet's desired statuses are:
+    And  Pet's desired statuses are:
       | sold      |
     When Trigger GET request with "/pet/findByStatus" endpoint
     Then Response status code is 200
+    And  Response body matches "petsArrayJsonSchema" schema
     And  Number of pets in response is greater then 0
-    And  Each pet object in response matches "petsArrayJsonSchema" schema
+
+  @WithVariousStatuses
+  Scenario Outline: Get pets by status
+    Given Use base request specification
+    And  Pet's desired statuses are:
+      | <statuses> |
+    When Trigger GET request with "/pet/findByStatus" endpoint
+    Then Response status code is 200
+    And  Response body matches "petsArrayJsonSchema" schema
+    And  Number of pets in response is greater then 0
+    Examples:
+      | statuses  |
+      | available |
+      | pending   |
+      | sold      |
 
   @WithAllStatuses
-  Scenario: Get pets by available status
+  Scenario: Get pets by all statuses
     Given Use base request specification
-    And   Pet's desired statuses are:
+    And  Pet's desired statuses are:
       | available |
       | pending   |
       | sold      |
     When Trigger GET request with "/pet/findByStatus" endpoint
     Then Response status code is 200
+    And  Response body matches "petsArrayJsonSchema" schema
     And  Number of pets in response is greater then 0
-    And  Each pet object in response matches "petsArrayJsonSchema" schema
 
   @SinglePet
   Scenario: Single Pet object matches schema
     Given Use base request specification
-    And   Pet's desired statuses are:
+    And  Pet's desired statuses are:
       | available |
     When Trigger GET request with "/pet/findByStatus" endpoint
-    And  Save 10 pet's id number in the list
+    Then Response status code is 200
+    And  Response body matches "petsArrayJsonSchema" schema
+    When Save 10 pet's id number in the list
     And  Use base request specification
     And  Trigger GET request with "/pet" endpoint with saved id
-    Then Pet object in response matches "petJsonSchema" schema
+    Then Response status code is 200
+    And  Response body matches "petJsonSchema" schema
 
   @WithEmptyStatus
   Scenario: Get pets by empty status
@@ -84,8 +102,19 @@ Feature: Get Pets information
   Scenario: Get pets by available status
     Given Use base request specification
     And   Pet's desired statuses are:
-      | invalid |
+      | died |
     When Trigger GET request with "/pet/findByStatus" endpoint
     Then Response status code is 200
     And  Response headers amount is 8
     And  Responce body has empty array
+
+  @WithInvalidId
+  Scenario: Get pets by invalid id
+    Given Use base request specification
+    And  Trigger GET request with "/pet" endpoint with id 123123123
+    Then Response status code is 404
+    And  Response body matches "errorJsonSchema" schema
+    And  Error has code 1, type "error" and message:
+    """
+    Pet not found
+    """
